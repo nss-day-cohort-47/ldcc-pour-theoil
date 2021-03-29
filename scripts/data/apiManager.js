@@ -71,3 +71,13 @@ export const getSingleSnack = (snackId) => {
 	return fetch(`${apiURL}/snacks/${snackId}?_expand=inFlavor&_expand=season&_expand=type&_expand=shape`)
 	.then(response => response.json())
 }
+
+export const getToppings = (snackId) => {
+	return fetch(`http://localhost:8088/snackToppings?snackId=${snackId}&_expand=topping`)
+	  .then(response => response.json())
+	  .then(parsedResponse => {
+        console.log("snackes", parsedResponse)
+        return parsedResponse;  
+	   })
+	  
+}

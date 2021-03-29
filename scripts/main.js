@@ -13,6 +13,7 @@ import {
 
 
 
+
 const applicationElement = document.querySelector("#ldsnacks");
 
 //login/register listeners
@@ -82,6 +83,7 @@ applicationElement.addEventListener("click", event => {
 const showDetails = (snackObj) => {
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
+
 }
 //end snack listeners
 
