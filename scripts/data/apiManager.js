@@ -122,7 +122,7 @@ export const getToppings = (snackId) => {
 }
 
 export const getSelectSnacks = (toppingId) => {
-	return fetch(`http://localhost:8088/snackToppings?g_expand=snack`)
+	return fetch(`http://localhost:8088/snackToppings?toppingId=${toppingId}&_expand=snack`)
 	  .then(response => response.json())
 	  .then(parsedResponse => {
         return parsedResponse;  
