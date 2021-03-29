@@ -66,7 +66,7 @@ applicationElement.addEventListener("click", event => {
 applicationElement.addEventListener("click", event => {
 	console.log(event.target.id)
 	if (event.target.id === "addType") {
-		const entryElement = document.querySelector(".mainContainer");
+		const entryElement = document.querySelector("#mainContent");
 		entryElement.innerHTML = addNewSnack();
 		createTypeList();
 		createShapeList();
@@ -107,6 +107,22 @@ applicationElement.addEventListener("click", event => {
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newSnack__cancel") {
 		checkForUser();
+	}
+})
+let newSnackObj = {};
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "newSnack__submit") {
+		newSnackObj = {
+			name: document.querySelector("input[name='name']").value,
+			snackImg: document.querySelector("input[name='snackImg']").value,
+			count: document.querySelector("input[name='count']").value,
+			typeId: document.querySelector("select[option]").id
+			// shapeId
+			// inFlavorId
+			// seasonId
+			// description
+		}
+		console.log(newSnackObj)
 	}
 })
 
