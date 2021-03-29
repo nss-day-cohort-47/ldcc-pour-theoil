@@ -142,6 +142,17 @@
       "typeId": 6,
       "inFlavorId": 3,
       "seasonId": 1
+    },
+    {
+      "name": "Twinkie",
+      "snackImg": "https://www.thespruceeats.com/thmb/ngiKc7O6NHzQaB_th6y6XpJJoMg=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/deep-fried-twinkies-recipe-305040-hero-01_cropped-4a047e69700544ae9adc7805c118043a.jpg",
+      "count": "24",
+      "typeId": "2",
+      "shapeId": "5",
+      "inFlavorId": "5",
+      "seasonId": "6",
+      "description": "        asdf",
+      "id": 13
     }
   ],
   "toppings": [
@@ -310,6 +321,26 @@
       "id": 20,
       "snackId": 11,
       "toppingId": 16
+    },
+    {
+      "snackId": 13,
+      "toppingId": "13",
+      "id": 21
+    },
+    {
+      "snackId": 13,
+      "toppingId": "11",
+      "id": 22
+    },
+    {
+      "snackId": 13,
+      "toppingId": "7",
+      "id": 23
+    },
+    {
+      "snackId": 13,
+      "toppingId": "1",
+      "id": 24
     }
   ],
   "inFlavors": [
