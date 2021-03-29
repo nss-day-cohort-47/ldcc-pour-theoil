@@ -8,10 +8,11 @@ import { getSnackToppings, SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks
+	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
+	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu
 } from "./data/apiManager.js";
-
-
+import {addNewSnack} from "./snacks/addSnack.js"
+import { addToppings } from "./snacks/toppings.js";
 
 
 const applicationElement = document.querySelector("#ldsnacks");
@@ -60,16 +61,39 @@ applicationElement.addEventListener("click", event => {
 })
 // end login register listeners
 
+
+//Add click event for add a type
+applicationElement.addEventListener("click", event => {
+	console.log(event.target.id)
+	if (event.target.id === "addType") {
+		const entryElement = document.querySelector(".mainContainer");
+		entryElement.innerHTML = addNewSnack();
+		createTypeList();
+		createShapeList();
+		createSeasonsList();
+		createFlavorsList();
+	}
+})
+let toppingindex = 0;
+applicationElement.addEventListener("click", event => {
+	console.log(event.target.id)
+	if (event.target.id === "addtopping") {
+		const entryElement = document.querySelector(".newTopping");
+		entryElement.innerHTML += addToppings(toppingindex);
+		createToppingsList();
+	}
+})
+
 // snack listeners
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
-
+	
 	if (event.target.id.startsWith("detailscake")) {
 		const snackId = event.target.id.split("__")[1];
 		getSingleSnack(snackId)
-			.then(response => {
-				showDetails(response);
-			})
+		.then(response => {
+			showDetails(response);
+		})
 	}
 })
 
@@ -80,10 +104,16 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "newSnack__cancel") {
+		checkForUser();
+	}
+})
+
 applicationElement.addEventListener("change", event => {
-    //pulls the id of what ever the user pulled out of the drop down
+	//pulls the id of what ever the user pulled out of the drop down
     if (event.target.id === "navlist") {
-        //set attractionSelector to the value selected'
+		//set attractionSelector to the value selected'
         let snackSelector = event.target.value
 		getSelectSnacks(snackSelector)
 		.then(response => {
@@ -94,14 +124,14 @@ applicationElement.addEventListener("change", event => {
 			const listElement = document.querySelector("#mainContent")
 			listElement.innerHTML = SnackList(snackarray);
 		})
-	
+		
     }
 })
 
 const showDetails = (snackObj) => {
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
-
+	
 }
 //end snack listeners
 
@@ -139,12 +169,13 @@ const showFooter = () => {
 
 const startLDSnacks = () => {
 	applicationElement.innerHTML = "";
+	
 	showNavBar();
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
 	createToppingList();
-
+	
 }
 
 //add all of the topping options
@@ -156,8 +187,49 @@ const createToppingList = () => {
 		})
 	})
 }
+const createTypeList = () => {
+	const entryHTMLSelector = document.querySelector("#snacktype");
+	getTypesMenu().then(response =>{
+		response.forEach((Obj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(Obj.name, Obj.id)
+		})
+	})
+}
+const createShapeList = () => {
+	const entryHTMLSelector = document.querySelector("#snackshape");
+	getShapesMenu().then(response =>{
+		response.forEach((toppingObj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+		})
+	})
+}
 
+const createSeasonsList = () => {
+	const entryHTMLSelector = document.querySelector("#snackSeason");
+	getSeasonsMenu().then(response =>{
+		response.forEach((toppingObj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+		})
+	})
+}
 
+const createFlavorsList = () => {
+	const entryHTMLSelector = document.querySelector("#snackFlavor");
+	getFlavorsMenu().then(response =>{
+		response.forEach((toppingObj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+		})
+	})
+}
 
+const createToppingsList = () => {
+	const entryHTMLSelector = document.querySelector(`#snackToppings__${toppingindex}`);
+	getToppingMenu().then(response =>{
+		response.forEach((toppingObj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+		})
+		toppingindex ++;
+	})
+}
 
 checkForUser();
