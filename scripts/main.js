@@ -4,11 +4,11 @@ import { LoginForm } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { NavBar } from "./nav/NavBar.js";
 import { SnackList } from "./snacks/SnackList.js";
-import { SnackDetails } from "./snacks/SnackDetails.js";
+import { getSnackToppings, SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
-	getSnacks, getSingleSnack
+	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks
 } from "./data/apiManager.js";
 
 
@@ -80,6 +80,24 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("change", event => {
+    //pulls the id of what ever the user pulled out of the drop down
+    if (event.target.id === "navlist") {
+        //set attractionSelector to the value selected'
+        let snackSelector = event.target.value
+		getSelectSnacks(snackSelector)
+		.then(response => {
+			let snackarray =[];
+			response.forEach(topping =>{
+				snackarray.push(topping.snack)
+			})
+			const listElement = document.querySelector("#mainContent")
+			listElement.innerHTML = SnackList(snackarray);
+		})
+	
+    }
+})
+
 const showDetails = (snackObj) => {
 	const listElement = document.querySelector("#mainContent");
 	listElement.innerHTML = SnackDetails(snackObj);
@@ -125,7 +143,21 @@ const startLDSnacks = () => {
 	applicationElement.innerHTML += `<div id="mainContent"></div>`;
 	showSnackList();
 	showFooter();
+	createToppingList();
 
 }
+
+//add all of the topping options
+const createToppingList = () => {
+	const entryHTMLSelector = document.querySelector(".form-select");
+	getToppingMenu().then(response =>{
+		response.forEach((toppingObj, index) =>{
+			entryHTMLSelector.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+		})
+	})
+}
+
+
+
 
 checkForUser();
