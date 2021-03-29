@@ -9,7 +9,7 @@ import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
 	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
-	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu
+	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu, getNewSnackId, addSnackToppings
 } from "./data/apiManager.js";
 import {addNewSnack} from "./snacks/addSnack.js"
 import { addToppings } from "./snacks/toppings.js";
@@ -116,13 +116,38 @@ applicationElement.addEventListener("click", event => {
 			name: document.querySelector("input[name='name']").value,
 			snackImg: document.querySelector("input[name='snackImg']").value,
 			count: document.querySelector("input[name='count']").value,
-			typeId: document.querySelector("select[option]").id
-			// shapeId
-			// inFlavorId
-			// seasonId
-			// description
+			typeId: document.querySelector("select[name='snacktype']").value,
+			shapeId: document.querySelector("select[name='snackshape']").value,
+			inFlavorId: document.querySelector("select[name='snackFlavor']").value,
+			seasonId: document.querySelector("select[name='snackSeason']").value,
+			description: document.querySelector("textarea[name='snackDescription']").value
 		}
-		console.log(newSnackObj)
+		let toppingarray = [];
+		for(let i = toppingindex-1; i >=0; i--) {
+			toppingarray.push(document.querySelector(`select[name='snackToppings__${i}']`).value)
+		}
+		console.log(toppingarray)
+		let snackid = ""
+		addSnack(newSnackObj).then(()=>{
+		getNewSnackId(newSnackObj.name)
+		.then(response => {
+			snackid = response[0].id;
+			let newsnacktoppingset = {};
+			toppingarray.forEach(snack =>{
+				newsnacktoppingset = {
+					snackId: snackid,
+					toppingId: snack
+				}
+				addSnackToppings(newsnacktoppingset)
+			})
+			
+			
+
+
+		//refresh the page
+			checkForUser();
+		})
+		})
 	}
 })
 

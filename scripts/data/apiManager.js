@@ -141,3 +141,19 @@ export const addSnack = snackObject => {
 		.then(response => response.json())
 		.then(getSnacks)
 }
+
+export const getNewSnackId = snackName => {
+	return fetch(`${apiURL}/snacks/?name=${snackName}`)
+	.then(response => response.json())
+}
+
+export const addSnackToppings = snackObject => {
+	return fetch(`${apiURL}/snackToppings`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(snackObject)
+	})	
+		.then(response => response.json())
+}

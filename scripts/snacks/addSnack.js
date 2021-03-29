@@ -25,7 +25,7 @@ export const addNewSnack = () => {
         </div>
 
         <li class="nav-item ms-1">
-			<select id="snacktype" class="form-select form-select btn-info" aria-label="Select A Topping">
+			<select name="snacktype" id="snacktype" class="form-select form-select btn-info" aria-label="Select A Topping">
 				<option selected>Select A Type</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
@@ -34,7 +34,7 @@ export const addNewSnack = () => {
 		</li>
 
         <li class="nav-item ms-1">
-			<select id="snackshape" class="form-select form-select btn-info" aria-label="Select A Topping">
+			<select name="snackshape" id="snackshape" class="form-select form-select btn-info" aria-label="Select A Topping">
 				<option selected>Select A Shape</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
@@ -43,7 +43,7 @@ export const addNewSnack = () => {
 		</li>
 
         <li class="nav-item ms-1">
-			<select id="snackFlavor" class="form-select form-select btn-info" aria-label="Select A Topping">
+			<select name="snackFlavor" id="snackFlavor" class="form-select form-select btn-info" aria-label="Select A Topping">
 				<option selected>Select A Flavor</option>
 				<option value="1">One</option>
 				<option value="2">Two</option>
@@ -52,7 +52,7 @@ export const addNewSnack = () => {
 		</li>
 
         <li class="nav-item ms-1">
-            <select id="snackSeason" class="form-select form-select btn-info" aria-label="Select A Topping">
+            <select name='snackSeason' id="snackSeason" class="form-select form-select btn-info" aria-label="Select A Topping">
                 <option selected>Select A Season</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -60,8 +60,6 @@ export const addNewSnack = () => {
             </select>
         </li>
         
-        
-
         <textarea name="snackDescription"
             class="newPost__input newPost__description"
             placeholder="Description of your snack">
