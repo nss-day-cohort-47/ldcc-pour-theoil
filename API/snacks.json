@@ -131,6 +131,17 @@
       "seasonId": 1,
       "description": "Strawberry-flavored cake with layered creme, coated in white frosting with light blue stripes and purple candy glitter.",
       "toppings": "White icing with light blue stripes and purple glitter."
+    },
+    {
+      "name": "Oatmeal Cream Pies Cereal",
+      "snackImg": "https://mma.prnewswire.com/media/1392062/Kellogg_Company_Little_Debbie_Cereal.jpg?p=original",
+      "description": "The creator of the nation's favorite breakfast cereals is teaming up with America's No. 1 selling snack cake to transform the beloved childhood treat into Kellogg's® Little Debbie® Oatmeal Creme Pies Cereal.",
+      "id": 12,
+      "shapeId": 4,
+      "count": 8,
+      "typeId": 6,
+      "inFlavorId": 3,
+      "seasonId": 1
     }
   ],
   "toppings": [
@@ -397,6 +408,10 @@
     {
       "id": 5,
       "name": "Cordial"
+    },
+    {
+      "name": "Cereal",
+      "id": 6
     }
   ],
   "shapes": [
