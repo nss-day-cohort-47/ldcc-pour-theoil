@@ -10,7 +10,7 @@ import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
 	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
 	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu, getNewSnackId, 
-	addSnackToppings, addNewType
+	addSnackToppings, addNewType, deleteCake
 } from "./data/apiManager.js";
 import {addNewSnack} from "./snacks/addSnack.js"
 import { addToppings } from "./snacks/toppings.js";
@@ -133,8 +133,13 @@ applicationElement.addEventListener("click", event => {
 })
 
 applicationElement.addEventListener("click", event => {
-	if (event.target.id === "newSnack__cancel") {
-		checkForUser();
+	if (event.target.id.startsWith("deletecake")) {
+		const cakeId = event.target.id.split("__")[1];
+		deleteCake(cakeId)
+		.then(response => {
+			checkForUser();
+		})
+		
 	}
 })
 
