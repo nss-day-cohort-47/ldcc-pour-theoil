@@ -57,7 +57,7 @@ export const addNewSnack = (type) => {
         <div>
         <button id="addtopping">Addtopping</button>
         </div>
-        <button id="newSnack__submit">Save ${type}</button>
+        <button id="newSnack__${type}">${type}</button>
         <button id="newSnack__cancel">Cancel</button>
     </form>
     `

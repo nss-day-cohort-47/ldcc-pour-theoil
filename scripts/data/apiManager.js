@@ -139,7 +139,7 @@ export const addSnack = snackObject => {
 		body: JSON.stringify(snackObject)
 	})	
 		.then(response => response.json())
-}
+} 
 
 export const addSnackToppings = snackObject => {
 	return fetch(`${apiURL}/snackToppings`, {
@@ -184,4 +184,15 @@ export const deleteSnackToppings = snackid => {
   
     })
         .then(response => response.json())
+}
+
+export const editSnack = (snack) =>{
+	return fetch(`${apiURL}/snacks/${snack.id}`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(snack)
+	})
+		.then(response => response.json())
 }

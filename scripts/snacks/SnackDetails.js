@@ -1,7 +1,7 @@
 import { getLoggedInUser } from "../data/apiManager.js"
 import { getToppings } from "../data/apiManager.js"
 
-export const getSnackToppings = (snackId) => {
+const getSnackToppings = (snackId) => {
 	getToppings(snackId)
 	.then(response => {
 		

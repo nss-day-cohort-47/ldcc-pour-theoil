@@ -4,13 +4,13 @@ import { LoginForm } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 import { NavBar } from "./nav/NavBar.js";
 import { SnackList } from "./snacks/SnackList.js";
-import { getSnackToppings, SnackDetails } from "./snacks/SnackDetails.js";
+import { SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, 
 	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
 	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu,
-	addSnackToppings, addNewType, deleteCake
+	addSnackToppings, addNewType, deleteCake, editSnack
 } from "./data/apiManager.js";
 import {addNewSnack} from "./snacks/addSnack.js"
 import { addToppings } from "./snacks/toppings.js";
@@ -95,7 +95,7 @@ applicationElement.addEventListener("click", event => {
 	console.log(event.target.id)
 	if (event.target.id === "addSnack") {
 		const entryElement = document.querySelector("#mainContent");
-		entryElement.innerHTML = addNewSnack();
+		entryElement.innerHTML = addNewSnack(event.target.id);
 		createTypeList();
 		createShapeList();
 		createSeasonsList();
@@ -155,7 +155,7 @@ applicationElement.addEventListener("click", event => {
 //Add New snack object
 let newSnackObj = {};
 applicationElement.addEventListener("click", event => {
-	if (event.target.id === "newSnack__submit") {
+	if (event.target.id === "newSnack__addSnack") {
 		newSnackObj = {
 			name: document.querySelector("input[name='name']").value,
 			snackImg: document.querySelector("input[name='snackImg']").value,
@@ -189,12 +189,37 @@ applicationElement.addEventListener("click", event => {
 		})
 	}
 })
+applicationElement.addEventListener("click", event =>{
+	if (event.target.id === "newSnack__editcake"){
+		let newSnackObj = {}
+		newSnackObj = {
+			id: editsnackId,
+			name: document.querySelector("input[name='name']").value,
+			snackImg: document.querySelector("input[name='snackImg']").value,
+			count: document.querySelector("input[name='count']").value,
+			typeId: document.querySelector("select[name='snacktype']").value,
+			shapeId: document.querySelector("select[name='snackshape']").value,
+			inFlavorId: document.querySelector("select[name='snackFlavor']").value,
+			seasonId: document.querySelector("select[name='snackSeason']").value,
+			description: document.querySelector("textarea[name='snackDescription']").value
+		}
+		editSnack(newSnackObj)
+		getSingleSnack(newSnackObj.id).then(response => {
+			showDetails(response)
+		})
+		
+		
+		// checkForUser();
 	
+		
+	}
+})
+let editsnackId	
 applicationElement.addEventListener("click", event => {
 	if (event.target.id.startsWith("editcake")) {
-		const snackId = event.target.id.split("__")[1];
+		editsnackId = event.target.id.split("__")[1];
 		const clicktype = event.target.id.split("__")[0]
-		getSingleSnack(snackId)
+		getSingleSnack(editsnackId)
 		.then(response =>{
 			//create the form 
 			const targetobject = response
@@ -252,6 +277,7 @@ applicationElement.addEventListener("click", event => {
 		})
 	}
 })
+
 
 
 applicationElement.addEventListener("change", event => {
