@@ -1,3 +1,5 @@
+import { getLoggedInUser } from "../data/apiManager.js"
+
 export const SnackCard = (snackObject) => {
 	return `
 	<div class="col">
@@ -8,8 +10,8 @@ export const SnackCard = (snackObject) => {
               <p class="card-text">${snackObject.description}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" id="detailscake__${snackObject.id}">Details</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}">Delete</button>
+                  ${getLoggedInUser().admin ? `<button type="button" class="btn btn-sm btn-outline-secondary" id="detailscake__${snackObject.id}">Details</button><button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}">Delete</button>`:
+                  `<button type="button" class="btn btn-sm btn-outline-secondary" id="detailscake__${snackObject.id}">Details</button><button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}" disabled>Delete</button>`}
                 </div>
                 <small class="text-muted">Count: ${snackObject.count}</small>
               </div>

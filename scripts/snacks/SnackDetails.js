@@ -39,8 +39,8 @@ export const SnackDetails = (snackObject) => {
 			  	
 				<div class="d-flex justify-content-between align-items-center">
 					${getLoggedInUser().admin ? 
-					'<div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" id="editcake__${snackObject.id}" disabled>Edit</button><button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}" disabled>Delete</button></div>'
-					: ""}
+					`<div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" id="editcake__${snackObject.id}">Edit</button><button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}">Delete</button></div>`
+					: `<div class="btn-group"><button type="button" class="btn btn-sm btn-outline-secondary" id="editcake__${snackObject.id}" disabled>Edit</button><button type="button" class="btn btn-sm btn-outline-secondary" id="deletecake__${snackObject.id}" disabled>Delete</button></div>`}
                 	<small class="text-muted">Count: ${snackObject.count}</small>
               	</div>
             </div>

@@ -7,9 +7,9 @@ import { SnackList } from "./snacks/SnackList.js";
 import { getSnackToppings, SnackDetails } from "./snacks/SnackDetails.js";
 import { Footer } from "./nav/Footer.js";
 import {
-	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
+	logoutUser, setLoggedInUser, loginUser, registerUser, 
 	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
-	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu, getNewSnackId, 
+	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu,
 	addSnackToppings, addNewType, deleteCake
 } from "./data/apiManager.js";
 import {addNewSnack} from "./snacks/addSnack.js"
@@ -86,6 +86,7 @@ applicationElement.addEventListener("click", event => {
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newType__cancel") {
 		checkForUser();
+		toppingindex = 0;
 	}
 })
 
@@ -162,10 +163,9 @@ applicationElement.addEventListener("click", event => {
 		}
 		console.log(toppingarray)
 		let snackid = ""
-		addSnack(newSnackObj).then(()=>{
-		getNewSnackId(newSnackObj.name)
+		addSnack(newSnackObj)
 		.then(response => {
-			snackid = response[0].id;
+			snackid = response.id;
 			let newsnacktoppingset = {};
 			toppingarray.forEach(snack =>{
 				newsnacktoppingset = {
@@ -173,6 +173,7 @@ applicationElement.addEventListener("click", event => {
 					toppingId: snack
 				}
 				addSnackToppings(newsnacktoppingset)
+				toppingindex = 0;
 			})
 			
 			
@@ -180,7 +181,6 @@ applicationElement.addEventListener("click", event => {
 
 		//refresh the page
 			checkForUser();
-		})
 		})
 	}
 })

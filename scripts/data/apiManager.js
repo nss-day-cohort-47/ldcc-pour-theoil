@@ -139,12 +139,6 @@ export const addSnack = snackObject => {
 		body: JSON.stringify(snackObject)
 	})	
 		.then(response => response.json())
-		.then(getSnacks)
-}
-
-export const getNewSnackId = snackName => {
-	return fetch(`${apiURL}/snacks/?name=${snackName}`)
-	.then(response => response.json())
 }
 
 export const addSnackToppings = snackObject => {
@@ -179,4 +173,15 @@ export const deleteCake = snackid => {
     })
         .then(response => response.json())
         .then(getSnacks)
+}
+
+export const deleteSnackToppings = snackid => {
+	return fetch(`http://localhost:8088/snackToppings?snackId=${snackid}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+  
+    })
+        .then(response => response.json())
 }
