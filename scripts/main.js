@@ -144,6 +144,15 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("click", event => {
+	if (event.target.id.startsWith("toppingdelete")) {
+		const toppingdele = event.target.id.split("__")[1];
+		const entryElement = document.querySelector(`.ms-${toppingdele}`);
+		entryElement.innerHTML = "<div></div>";
+	}
+})
+
+//Add New snack object
 let newSnackObj = {};
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newSnack__submit") {
@@ -175,15 +184,75 @@ applicationElement.addEventListener("click", event => {
 				addSnackToppings(newsnacktoppingset)
 				toppingindex = 0;
 			})
-			
-			
-
-
 		//refresh the page
 			checkForUser();
 		})
 	}
 })
+	
+applicationElement.addEventListener("click", event => {
+	if (event.target.id.startsWith("editcake")) {
+		const snackId = event.target.id.split("__")[1];
+		const clicktype = event.target.id.split("__")[0]
+		getSingleSnack(snackId)
+		.then(response =>{
+			//create the form 
+			const targetobject = response
+			const entryElement = document.querySelector("#mainContent");
+			entryElement.innerHTML = addNewSnack(clicktype);
+			//populate the lists with the previously selected option
+			const entryHTMLSelector = document.querySelector("#snacktype");
+			getTypesMenu().then(response =>{
+				response.forEach((Obj, index) =>{
+				entryHTMLSelector.options[index + 1] = new Option(Obj.name, Obj.id)
+				})
+				const objtype = document.querySelector("#snacktype")
+				objtype.options[Number(targetobject.typeId)].selected = true
+			})
+			const entryHTMLShape = document.querySelector("#snackshape");
+			getShapesMenu().then(response =>{
+				response.forEach((toppingObj, index) =>{
+				entryHTMLShape.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+				})
+				const objtype = document.querySelector("#snackshape")
+				objtype.options[Number(targetobject.shapeId)].selected = true
+			})
+			
+			const entryHTMFlavor = document.querySelector("#snackFlavor");
+			getFlavorsMenu().then(response =>{
+				response.forEach((toppingObj, index) =>{
+					entryHTMFlavor.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+				})
+				const objtype = document.querySelector("#snackFlavor")
+				objtype.options[Number(targetobject.inFlavorId)].selected = true
+			})
+			
+			
+			const entryHTMLSeason = document.querySelector("#snackSeason");
+			getSeasonsMenu().then(response =>{
+				response.forEach((toppingObj, index) =>{
+					entryHTMLSeason.options[index + 1] = new Option(toppingObj.name, toppingObj.id)
+				})
+				const objtype = document.querySelector("#snackSeason")
+				objtype.options[Number(targetobject.seasonId)].selected = true
+			})
+
+
+			const objname = document.querySelector(".newsnack__name")
+			objname.value = response.name
+			const objimage = document.querySelector(".newsnack__image")
+			objimage.value = response.snackImg
+			const objcount = document.querySelector(".newsnack__count")
+			objcount.value = response.count
+		
+			// inFlavorId: document.querySelector("select[name='snackFlavor']").value,
+			// seasonId: document.querySelector("select[name='snackSeason']").value,
+			const objdescription = document.querySelector(".newPost__description")
+			objdescription.value = response.description
+		})
+	}
+})
+
 
 applicationElement.addEventListener("change", event => {
 	//pulls the id of what ever the user pulled out of the drop down
