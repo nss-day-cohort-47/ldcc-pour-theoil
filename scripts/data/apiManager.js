@@ -157,3 +157,14 @@ export const addSnackToppings = snackObject => {
 	})	
 		.then(response => response.json())
 }
+
+export const addNewType = snackObject => {
+	return fetch(`${apiURL}/types`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(snackObject)
+	})	
+		.then(response => response.json())
+}

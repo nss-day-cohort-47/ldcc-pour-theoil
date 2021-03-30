@@ -153,6 +153,17 @@
       "seasonId": "6",
       "description": "        asdf",
       "id": 13
+    },
+    {
+      "name": "Twinkie2",
+      "snackImg": "https://www.thespruceeats.com/thmb/ngiKc7O6NHzQaB_th6y6XpJJoMg=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/deep-fried-twinkies-recipe-305040-hero-01_cropped-4a047e69700544ae9adc7805c118043a.jpg",
+      "count": "24",
+      "typeId": "3",
+      "shapeId": "6",
+      "inFlavorId": "5",
+      "seasonId": "1",
+      "description": "Twinkie",
+      "id": 14
     }
   ],
   "toppings": [
@@ -341,6 +352,21 @@
       "snackId": 13,
       "toppingId": "1",
       "id": 24
+    },
+    {
+      "snackId": 14,
+      "toppingId": "12",
+      "id": 25
+    },
+    {
+      "snackId": 14,
+      "toppingId": "4",
+      "id": 26
+    },
+    {
+      "snackId": 14,
+      "toppingId": "2",
+      "id": 27
     }
   ],
   "inFlavors": [
@@ -443,6 +469,10 @@
     {
       "name": "Cereal",
       "id": 6
+    },
+    {
+      "name": "Filled Cake",
+      "id": 7
     }
   ],
   "shapes": [
