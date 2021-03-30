@@ -168,3 +168,15 @@ export const addNewType = snackObject => {
 	})	
 		.then(response => response.json())
 }
+
+export const deleteCake = snackid => {
+	return fetch(`http://localhost:8088/snacks/${snackid}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+  
+    })
+        .then(response => response.json())
+        .then(getSnacks)
+}
