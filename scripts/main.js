@@ -9,10 +9,12 @@ import { Footer } from "./nav/Footer.js";
 import {
 	logoutUser, setLoggedInUser, loginUser, registerUser, getLoggedInUser,
 	getSnacks, getSingleSnack, getToppingMenu, getSelectSnacks, addSnack, 
-	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu, getNewSnackId, addSnackToppings
+	getFlavorsMenu, getSeasonsMenu, getShapesMenu, getTypesMenu, getNewSnackId, 
+	addSnackToppings, addNewType
 } from "./data/apiManager.js";
 import {addNewSnack} from "./snacks/addSnack.js"
 import { addToppings } from "./snacks/toppings.js";
+import { addType } from "./snacks/addType.js"
 
 
 const applicationElement = document.querySelector("#ldsnacks");
@@ -61,11 +63,36 @@ applicationElement.addEventListener("click", event => {
 })
 // end login register listeners
 
-
-//Add click event for add a type
+//add clickevent to add type of snack
 applicationElement.addEventListener("click", event => {
 	console.log(event.target.id)
 	if (event.target.id === "addType") {
+		const entryElement = document.querySelector("#mainContent");
+		entryElement.innerHTML = addType();
+	}
+})
+
+let newTypeObj = {};
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "newType__submit") {
+		newTypeObj = {
+			name: document.querySelector("input[name='name']").value
+		}
+		addNewType(newTypeObj)
+		checkForUser();
+	}
+})
+
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "newType__cancel") {
+		checkForUser();
+	}
+})
+
+//Add click event for add a snack
+applicationElement.addEventListener("click", event => {
+	console.log(event.target.id)
+	if (event.target.id === "addSnack") {
 		const entryElement = document.querySelector("#mainContent");
 		entryElement.innerHTML = addNewSnack();
 		createTypeList();
@@ -74,6 +101,7 @@ applicationElement.addEventListener("click", event => {
 		createFlavorsList();
 	}
 })
+
 let toppingindex = 0;
 applicationElement.addEventListener("click", event => {
 	console.log(event.target.id)
@@ -109,6 +137,7 @@ applicationElement.addEventListener("click", event => {
 		checkForUser();
 	}
 })
+
 let newSnackObj = {};
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newSnack__submit") {

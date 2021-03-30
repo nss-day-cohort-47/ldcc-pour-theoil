@@ -30,7 +30,7 @@ export const NavBar = () => {
 	<nav class="navbar navbar-light"">
 		<div class="container-fluid">
 			<button id="addType" class="btn btn-outline-primary" type="button">Add A Type</button>
-		
+			<button id="addSnack" class="btn btn-outline-primary" type="button">Add A Snack</button>
 		</div>
 	</nav>` : ""
 
