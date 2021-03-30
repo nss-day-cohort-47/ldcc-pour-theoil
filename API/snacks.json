@@ -133,15 +133,15 @@
       "toppings": "White icing with light blue stripes and purple glitter."
     },
     {
+      "id": 12,
       "name": "Oatmeal Cream Pies Cereal",
       "snackImg": "https://mma.prnewswire.com/media/1392062/Kellogg_Company_Little_Debbie_Cereal.jpg?p=original",
-      "description": "The creator of the nation's favorite breakfast cereals is teaming up with America's No. 1 selling snack cake to transform the beloved childhood treat into Kellogg's® Little Debbie® Oatmeal Creme Pies Cereal.",
-      "id": 12,
-      "shapeId": 4,
-      "count": 8,
-      "typeId": 6,
-      "inFlavorId": 3,
-      "seasonId": 1
+      "count": "8",
+      "typeId": "6",
+      "shapeId": "4",
+      "inFlavorId": "3",
+      "seasonId": "3",
+      "description": "The creator of the nation's favorite breakfast cereals is teaming up with America's No. 1 selling snack cake to transform the beloved childhood treat into Kellogg's® Little Debbie® Oatmeal Creme Pies Cereal."
     }
   ],
   "toppings": [

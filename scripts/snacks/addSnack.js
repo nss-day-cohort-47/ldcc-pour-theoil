@@ -1,17 +1,17 @@
-export const addNewSnack = () => {
+export const addNewSnack = (type) => {
     return `
     <form class="newSnack">
         <div>
             <input value=""
                    name="name"
-                   class="newPost__input"
+                   class="newsnack__name"
                    type="text"
                    placeholder="Title" />
         </div>
         <div>
             <input value=""
                    name="snackImg"
-                   class="newPost__input"
+                   class="newsnack__image"
                    type="text"
                    placeholder="URL of Image" />
         </div>
@@ -19,7 +19,7 @@ export const addNewSnack = () => {
         <div>
             <input value=""
                    name="count"
-                   class="newPost__input"
+                   class="newsnack__count"
                    type="text"
                    placeholder="Count of Snack" />
         </div>
@@ -50,15 +50,14 @@ export const addNewSnack = () => {
         
         <textarea name="snackDescription"
             class="newPost__input newPost__description"
-            placeholder="Description of your snack">
-        </textarea>
+            placeholder="Description of your snack"></textarea>
 
         <div class="newTopping"></div>
         
         <div>
         <button id="addtopping">Addtopping</button>
         </div>
-        <button id="newSnack__submit">Save</button>
+        <button id="newSnack__${type}">${type}</button>
         <button id="newSnack__cancel">Cancel</button>
     </form>
     `
